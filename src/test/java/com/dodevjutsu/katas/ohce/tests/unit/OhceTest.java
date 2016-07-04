@@ -12,7 +12,7 @@ public class OhceTest {
     private GreetingsSelector selector;
     private Notifier notifier;
     private Ohce ohce;
-    private PhraseInput phraseInput;
+    private PhraseReader phraseReader;
     private String userName;
     private Phrase stopPhrase;
 
@@ -21,8 +21,8 @@ public class OhceTest {
         context = new Mockery();
         selector = context.mock(GreetingsSelector.class);
         notifier = context.mock(Notifier.class);
-        phraseInput = context.mock(PhraseInput.class);
-        ohce = new Ohce(selector, notifier, phraseInput);
+        phraseReader = context.mock(PhraseReader.class);
+        ohce = new Ohce(selector, notifier, phraseReader);
         userName = "Juan";
         stopPhrase = new Phrase("Stop!");
     }
@@ -32,7 +32,7 @@ public class OhceTest {
         String greeting = "¡Buenos días Juan!";
 
         context.checking(new Expectations() {{
-            allowing(phraseInput);
+            allowing(phraseReader);
             will(onConsecutiveCalls(
                 returnValue(new Phrase("not used")),
                 returnValue(stopPhrase)
@@ -58,7 +58,7 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            exactly(2).of(phraseInput).read();
+            exactly(2).of(phraseReader).read();
             will(onConsecutiveCalls(
                 returnValue(phrase),
                 returnValue(stopPhrase)
@@ -80,7 +80,7 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            exactly(2).of(phraseInput).read();
+            exactly(2).of(phraseReader).read();
             will(onConsecutiveCalls(
                 returnValue(palindrome),
                 returnValue(stopPhrase)
@@ -101,7 +101,7 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            oneOf(phraseInput).read();
+            oneOf(phraseReader).read();
             will(returnValue(stopPhrase));
 
             oneOf(notifier).sayBye(userName);
@@ -118,7 +118,7 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            exactly(3).of(phraseInput).read();
+            exactly(3).of(phraseReader).read();
             will(
                 onConsecutiveCalls(
                     returnValue(new Phrase("pepe")),

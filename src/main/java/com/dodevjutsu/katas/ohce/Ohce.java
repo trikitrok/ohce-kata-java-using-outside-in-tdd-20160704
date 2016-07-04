@@ -4,21 +4,21 @@ public class Ohce {
     private static final Phrase STOP_PHRASE = new Phrase("Stop!");
     private GreetingsSelector selector;
     private Notifier notifier;
-    private PhraseInput phraseInput;
+    private PhraseReader phraseReader;
 
     public Ohce(Console console, InputReader inputReader, Clock clock) {
 
     }
 
-    public Ohce(GreetingsSelector selector, Notifier notifier, PhraseInput phraseInput) {
+    public Ohce(GreetingsSelector selector, Notifier notifier, PhraseReader phraseReader) {
         this.selector = selector;
         this.notifier = notifier;
-        this.phraseInput = phraseInput;
+        this.phraseReader = phraseReader;
     }
 
     public void run(String userName) {
         greet(userName);
-        processPhrase(phraseInput.read());
+        processPhrase(phraseReader.read());
         sayBye(userName);
     }
 
@@ -41,7 +41,7 @@ public class Ohce {
             notifier.palindromesRock();
         }
 
-        processPhrase(phraseInput.read());
+        processPhrase(phraseReader.read());
     }
 
     private boolean shouldStop(Phrase phrase) {

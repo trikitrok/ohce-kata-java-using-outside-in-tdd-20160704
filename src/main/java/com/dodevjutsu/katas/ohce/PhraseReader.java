@@ -1,5 +1,5 @@
 package com.dodevjutsu.katas.ohce;
 
-public interface PhraseInput {
+public interface PhraseReader {
     Phrase read();
 }
