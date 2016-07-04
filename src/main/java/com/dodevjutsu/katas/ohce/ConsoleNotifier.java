@@ -19,7 +19,7 @@ public class ConsoleNotifier implements Notifier {
 
     @Override
     public void palindromesRock() {
-
+        console.print("¡Bonita palabra!");
     }
 
     @Override

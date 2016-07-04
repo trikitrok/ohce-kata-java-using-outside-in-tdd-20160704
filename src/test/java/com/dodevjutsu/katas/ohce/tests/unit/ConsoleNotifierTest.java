@@ -42,4 +42,21 @@ public class ConsoleNotifierTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void celebrates_palindromes() {
+        Mockery context = new Mockery();
+        Console console = context.mock(Console.class);
+        Notifier notifier = new ConsoleNotifier(console);
+
+        final String celebration = "¡Bonita palabra!";
+
+        context.checking(new Expectations() {{
+            oneOf(console).print(celebration);
+        }});
+
+        notifier.palindromesRock();
+
+        context.assertIsSatisfied();
+    }
 }
