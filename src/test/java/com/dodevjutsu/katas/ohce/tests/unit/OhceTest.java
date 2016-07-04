@@ -10,23 +10,28 @@ import org.junit.Test;
 public class OhceTest {
 
     private Mockery context;
+    private GreetingsSelector selector;
+    private Notifier notifier;
 
     @Test
     public void greets_user() {
         context = new Mockery();
-        GreetingsSelector selector = context.mock(GreetingsSelector.class);
-        Notifier notifier = context.mock(Notifier.class);
+        selector = context.mock(GreetingsSelector.class);
+        notifier = context.mock(Notifier.class);
+        final String userName = "Juan";
+        String greeting = "¡Buenos días Juan!";
 
         Ohce ohce = new Ohce(selector, notifier);
 
         context.checking(new Expectations() {{
-            oneOf(selector).select_greeting("Juan");
-            will(returnValue("¡Buenos días Juan!"));
+            oneOf(selector).select_greeting(userName);
 
-            oneOf(notifier).greet("¡Buenos días Juan!");
+            will(returnValue(greeting));
+
+            oneOf(notifier).greet(greeting);
         }});
 
-        ohce.run("Juan");
+        ohce.run(userName);
 
         context.assertIsSatisfied();
     }
