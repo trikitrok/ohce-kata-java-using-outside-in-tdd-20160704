@@ -1,20 +1,27 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.Console;
-import com.dodevjutsu.katas.ohce.ConsoleNotifier;
-import com.dodevjutsu.katas.ohce.Notifier;
-import com.dodevjutsu.katas.ohce.Phrase;
+import com.dodevjutsu.katas.ohce.*;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ConsoleNotifierTest {
+
+    private Notifier notifier;
+    private Console console;
+    private Mockery context;
+
+    @Before
+    public void setUp() {
+        context = new Mockery();
+        console = context.mock(Console.class);
+        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        notifier = new ConsoleNotifier(console, config);
+    }
+
     @Test
     public void greets_the_user() {
-        Mockery context = new Mockery();
-        Console console = context.mock(Console.class);
-        Notifier notifier = new ConsoleNotifier(console);
-
         final String someGreeting = "hola";
 
         context.checking(new Expectations() {{
@@ -28,27 +35,19 @@ public class ConsoleNotifierTest {
 
     @Test
     public void echoes_reversed_phrases() {
-        Mockery context = new Mockery();
-        Console console = context.mock(Console.class);
-        Notifier notifier = new ConsoleNotifier(console);
-
-        final String someString = "okom";
+        final String someInput = "okom";
 
         context.checking(new Expectations() {{
-            oneOf(console).print(someString);
+            oneOf(console).print(someInput);
         }});
 
-        notifier.echoReversedPhrase(new Phrase(someString));
+        notifier.echoReversedPhrase(new Phrase(someInput));
 
         context.assertIsSatisfied();
     }
 
     @Test
     public void celebrates_palindromes() {
-        Mockery context = new Mockery();
-        Console console = context.mock(Console.class);
-        Notifier notifier = new ConsoleNotifier(console);
-
         final String celebration = "¡Bonita palabra!";
 
         context.checking(new Expectations() {{
@@ -62,10 +61,6 @@ public class ConsoleNotifierTest {
 
     @Test
     public void says_bye() {
-        Mockery context = new Mockery();
-        Console console = context.mock(Console.class);
-        Notifier notifier = new ConsoleNotifier(console);
-
         final String bye_message = "Adios Pedro";
 
         context.checking(new Expectations() {{
