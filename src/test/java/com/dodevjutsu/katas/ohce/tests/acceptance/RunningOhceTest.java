@@ -19,6 +19,8 @@ public class RunningOhceTest {
     private InputReader inputReader;
     private Console console;
     private Mockery context;
+    private NotificationsConfiguration config;
+    private Ohce ohce;
 
     @Before
     public void setUp() {
@@ -26,17 +28,16 @@ public class RunningOhceTest {
         console = context.mock(Console.class);
         inputReader = context.mock(InputReader.class);
         clock = context.mock(Clock.class);
-    }
-
-    @Test
-    public void running_ohce_during_the_morning() {
-        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
-        Ohce ohce = new Ohce(
+        config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        ohce = new Ohce(
             "Stop!",
             new DayPeriodGreetingsSelector(clock),
             new ConsoleNotifier(console, config),
             new ConsolePhraseReader(inputReader));
+    }
 
+    @Test
+    public void running_ohce_during_the_morning() {
         context.checking(new Expectations() {{
             oneOf(clock).hour();
             will(returnValue(8));
@@ -64,13 +65,6 @@ public class RunningOhceTest {
 
     @Test
     public void running_ohce_during_the_afternoon() {
-        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
-        Ohce ohce = new Ohce(
-            "Stop!",
-            new DayPeriodGreetingsSelector(clock),
-            new ConsoleNotifier(console, config),
-            new ConsolePhraseReader(inputReader));
-
         context.checking(new Expectations() {{
             oneOf(clock).hour();
             will(returnValue(16));
@@ -91,13 +85,6 @@ public class RunningOhceTest {
 
     @Test
     public void running_ohce_during_the_night() {
-        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
-        Ohce ohce = new Ohce(
-            "Stop!",
-            new DayPeriodGreetingsSelector(clock),
-            new ConsoleNotifier(console, config),
-            new ConsolePhraseReader(inputReader));
-
         context.checking(new Expectations() {{
             oneOf(clock).hour();
             will(returnValue(21));
