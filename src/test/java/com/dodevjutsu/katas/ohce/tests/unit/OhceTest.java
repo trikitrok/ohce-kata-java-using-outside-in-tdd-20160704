@@ -14,6 +14,7 @@ public class OhceTest {
     private Ohce ohce;
     private PhraseInput phraseInput;
     private String userName;
+    private Phrase stopPhrase;
 
     @Before
     public void setUp() {
@@ -23,6 +24,7 @@ public class OhceTest {
         phraseInput = context.mock(PhraseInput.class);
         ohce = new Ohce(selector, notifier, phraseInput);
         userName = "Juan";
+        stopPhrase = new Phrase("Stop!");
     }
 
     @Test
@@ -53,8 +55,11 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            oneOf(phraseInput).read();
-            will(returnValue(phrase));
+            exactly(2).of(phraseInput).read();
+            will(onConsecutiveCalls(
+                returnValue(phrase),
+                returnValue(stopPhrase)
+            ));
 
             oneOf(notifier).echoReversedPhrase(reversedPhrase);
             ignoring(notifier);
@@ -72,8 +77,11 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(selector);
 
-            oneOf(phraseInput).read();
-            will(returnValue(palindrome));
+            exactly(2).of(phraseInput).read();
+            will(onConsecutiveCalls(
+                returnValue(palindrome),
+                returnValue(stopPhrase)
+            ));
 
             oneOf(notifier).echoReversedPhrase(palindrome);
             oneOf(notifier).palindromesRock();
@@ -87,14 +95,37 @@ public class OhceTest {
 
     @Test
     public void says_bye_when_told_to_stop() {
-        Phrase stopPhrase = new Phrase("Stop!");
-
         context.checking(new Expectations() {{
             ignoring(selector);
 
             oneOf(phraseInput).read();
             will(returnValue(stopPhrase));
 
+            oneOf(notifier).sayBye();
+            ignoring(notifier);
+        }});
+
+        ohce.run(userName);
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void keeps_asking_for_the_user_input_until_told_to_stop() {
+        context.checking(new Expectations() {{
+            ignoring(selector);
+
+            exactly(3).of(phraseInput).read();
+            will(
+                onConsecutiveCalls(
+                    returnValue(new Phrase("pepe")),
+                    returnValue(new Phrase("moko")),
+                    returnValue(stopPhrase)
+                )
+            );
+
+            oneOf(notifier).echoReversedPhrase(new Phrase("epep"));
+            oneOf(notifier).echoReversedPhrase(new Phrase("okom"));
             oneOf(notifier).sayBye();
             ignoring(notifier);
         }});

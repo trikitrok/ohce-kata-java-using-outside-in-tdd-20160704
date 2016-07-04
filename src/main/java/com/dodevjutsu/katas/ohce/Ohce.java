@@ -31,6 +31,32 @@ public class Ohce {
         if(phrase.isPalindrome()) {
             notifier.palindromesRock();
         }
+
+        phrase = phraseInput.read();
+
+        if(shouldStop(phrase)) {
+            notifier.sayBye();
+            return;
+        }
+
+        notifier.echoReversedPhrase(phrase.reversed());
+
+        if(phrase.isPalindrome()) {
+            notifier.palindromesRock();
+        }
+
+        phrase = phraseInput.read();
+
+        if(shouldStop(phrase)) {
+            notifier.sayBye();
+            return;
+        }
+
+        notifier.echoReversedPhrase(phrase.reversed());
+
+        if(phrase.isPalindrome()) {
+            notifier.palindromesRock();
+        }
     }
 
     private boolean shouldStop(Phrase phrase) {
