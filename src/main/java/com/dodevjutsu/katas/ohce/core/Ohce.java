@@ -1,12 +1,13 @@
 package com.dodevjutsu.katas.ohce.core;
 
 public class Ohce {
-    private static final Phrase STOP_PHRASE = new Phrase("Stop!");
+    private Phrase stopPhrase;
     private GreetingsSelector selector;
     private Notifier notifier;
     private PhraseReader phraseReader;
 
-    public Ohce(GreetingsSelector selector, Notifier notifier, PhraseReader phraseReader) {
+    public Ohce(String stopPhraseContent, GreetingsSelector selector, Notifier notifier, PhraseReader phraseReader) {
+        this.stopPhrase = new Phrase(stopPhraseContent);
         this.selector = selector;
         this.notifier = notifier;
         this.phraseReader = phraseReader;
@@ -41,6 +42,6 @@ public class Ohce {
     }
 
     private boolean shouldStop(Phrase phrase) {
-        return STOP_PHRASE.equals(phrase);
+        return stopPhrase.equals(phrase);
     }
 }

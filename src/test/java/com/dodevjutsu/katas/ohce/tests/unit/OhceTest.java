@@ -22,9 +22,10 @@ public class OhceTest {
         selector = context.mock(GreetingsSelector.class);
         notifier = context.mock(Notifier.class);
         phraseReader = context.mock(PhraseReader.class);
-        ohce = new Ohce(selector, notifier, phraseReader);
+        String stopPhraseContent = "Stop!";
+        ohce = new Ohce(stopPhraseContent, selector, notifier, phraseReader);
         userName = "Juan";
-        stopPhrase = new Phrase("Stop!");
+        stopPhrase = new Phrase(stopPhraseContent);
     }
 
     @Test

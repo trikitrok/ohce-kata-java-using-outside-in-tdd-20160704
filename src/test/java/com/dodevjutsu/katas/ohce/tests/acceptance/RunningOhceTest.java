@@ -32,6 +32,7 @@ public class RunningOhceTest {
     public void running_ohce_during_the_morning() {
         NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
         Ohce ohce = new Ohce(
+            "Stop!",
             new DayPeriodGreetingsSelector(clock),
             new ConsoleNotifier(console, config),
             new ConsolePhraseReader(inputReader));
