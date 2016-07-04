@@ -42,4 +42,22 @@ public class DayPeriodGreetingsSelectorTest {
         context.assertIsSatisfied();
     }
 
+    @Test
+    public void selecting_greeting_during_the_afternoon() {
+        context.checking(new Expectations() {{
+            exactly(3).of(clock).hour();
+            will(onConsecutiveCalls(
+                returnValue(12),
+                returnValue(16),
+                returnValue(19)
+            ));
+        }});
+
+        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas tardes Juan!"));
+        assertThat(greetingsSelector.select_greeting("Koko"), is("¡Buenas tardes Koko!"));
+        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas tardes Juan!"));
+
+        context.assertIsSatisfied();
+    }
+
 }
