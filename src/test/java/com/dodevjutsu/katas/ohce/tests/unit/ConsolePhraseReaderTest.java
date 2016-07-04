@@ -1,9 +1,9 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.ConsolePhraseReader;
-import com.dodevjutsu.katas.ohce.InputReader;
-import com.dodevjutsu.katas.ohce.Phrase;
-import com.dodevjutsu.katas.ohce.PhraseReader;
+import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
+import com.dodevjutsu.katas.ohce.infrastructure.console.InputReader;
+import com.dodevjutsu.katas.ohce.core.Phrase;
+import com.dodevjutsu.katas.ohce.core.PhraseReader;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;

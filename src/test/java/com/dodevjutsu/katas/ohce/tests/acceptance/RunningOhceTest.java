@@ -1,6 +1,13 @@
 package com.dodevjutsu.katas.ohce.tests.acceptance;
 
-import com.dodevjutsu.katas.ohce.*;
+import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
+import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
+import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
+import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
+import com.dodevjutsu.katas.ohce.core.Ohce;
+import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
+import com.dodevjutsu.katas.ohce.infrastructure.console.Console;
+import com.dodevjutsu.katas.ohce.infrastructure.console.InputReader;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;

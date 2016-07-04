@@ -1,8 +1,8 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.Clock;
-import com.dodevjutsu.katas.ohce.DayPeriodGreetingsSelector;
-import com.dodevjutsu.katas.ohce.GreetingsSelector;
+import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
+import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
+import com.dodevjutsu.katas.ohce.core.GreetingsSelector;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;

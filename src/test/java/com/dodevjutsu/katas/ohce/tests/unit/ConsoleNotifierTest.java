@@ -1,6 +1,10 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.*;
+import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
+import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
+import com.dodevjutsu.katas.ohce.core.Notifier;
+import com.dodevjutsu.katas.ohce.core.Phrase;
+import com.dodevjutsu.katas.ohce.infrastructure.console.Console;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
