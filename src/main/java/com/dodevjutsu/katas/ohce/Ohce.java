@@ -20,9 +20,13 @@ public class Ohce {
         notifier.greet(selector.select_greeting(userName));
 
         Phrase phrase = phraseInput.read();
+        processPhrase(phrase);
 
+        notifier.sayBye();
+    }
+
+    private void processPhrase(Phrase phrase) {
         if(shouldStop(phrase)) {
-            notifier.sayBye();
             return;
         }
 
@@ -32,31 +36,7 @@ public class Ohce {
             notifier.palindromesRock();
         }
 
-        phrase = phraseInput.read();
-
-        if(shouldStop(phrase)) {
-            notifier.sayBye();
-            return;
-        }
-
-        notifier.echoReversedPhrase(phrase.reversed());
-
-        if(phrase.isPalindrome()) {
-            notifier.palindromesRock();
-        }
-
-        phrase = phraseInput.read();
-
-        if(shouldStop(phrase)) {
-            notifier.sayBye();
-            return;
-        }
-
-        notifier.echoReversedPhrase(phrase.reversed());
-
-        if(phrase.isPalindrome()) {
-            notifier.palindromesRock();
-        }
+        processPhrase(phraseInput.read());
     }
 
     private boolean shouldStop(Phrase phrase) {

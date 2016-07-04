@@ -33,7 +33,10 @@ public class OhceTest {
 
         context.checking(new Expectations() {{
             allowing(phraseInput);
-            will(returnValue(new Phrase("not used")));
+            will(onConsecutiveCalls(
+                returnValue(new Phrase("not used")),
+                returnValue(stopPhrase)
+            ));
 
             oneOf(selector).select_greeting(userName);
             will(returnValue(greeting));
