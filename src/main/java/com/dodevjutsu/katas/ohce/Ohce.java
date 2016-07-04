@@ -17,11 +17,16 @@ public class Ohce {
     }
 
     public void run(String userName) {
+        greet(userName);
+        processPhrase(phraseInput.read());
+        sayBye(userName);
+    }
+
+    private void greet(String userName) {
         notifier.greet(selector.select_greeting(userName));
+    }
 
-        Phrase phrase = phraseInput.read();
-        processPhrase(phrase);
-
+    private void sayBye(String userName) {
         notifier.sayBye(userName);
     }
 
