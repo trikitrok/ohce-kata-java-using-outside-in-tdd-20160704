@@ -6,13 +6,6 @@ public class Ohce {
     private Notifier notifier;
     private PhraseReader phraseReader;
 
-    public Ohce(Console console, InputReader inputReader, Clock clock) {
-        selector = new DayPeriodGreetingsSelector(clock);
-        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
-        notifier = new ConsoleNotifier(console, config);
-        phraseReader = new ConsolePhraseReader(inputReader);
-    }
-
     public Ohce(GreetingsSelector selector, Notifier notifier, PhraseReader phraseReader) {
         this.selector = selector;
         this.notifier = notifier;

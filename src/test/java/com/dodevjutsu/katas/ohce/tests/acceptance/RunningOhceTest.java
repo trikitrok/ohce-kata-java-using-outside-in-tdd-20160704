@@ -1,9 +1,6 @@
 package com.dodevjutsu.katas.ohce.tests.acceptance;
 
-import com.dodevjutsu.katas.ohce.Clock;
-import com.dodevjutsu.katas.ohce.Console;
-import com.dodevjutsu.katas.ohce.InputReader;
-import com.dodevjutsu.katas.ohce.Ohce;
+import com.dodevjutsu.katas.ohce.*;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -26,7 +23,11 @@ public class RunningOhceTest {
 
     @Test
     public void running_ohce_during_the_morning() {
-        Ohce ohce = new Ohce(console, inputReader, clock);
+        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        Ohce ohce = new Ohce(
+            new DayPeriodGreetingsSelector(clock),
+            new ConsoleNotifier(console, config),
+            new ConsolePhraseReader(inputReader));
 
         context.checking(new Expectations() {{
             oneOf(clock).hour();
