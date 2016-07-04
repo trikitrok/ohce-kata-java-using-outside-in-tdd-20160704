@@ -61,4 +61,58 @@ public class RunningOhceTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void running_ohce_during_the_afternoon() {
+        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        Ohce ohce = new Ohce(
+            "Stop!",
+            new DayPeriodGreetingsSelector(clock),
+            new ConsoleNotifier(console, config),
+            new ConsolePhraseReader(inputReader));
+
+        context.checking(new Expectations() {{
+            oneOf(clock).hour();
+            will(returnValue(16));
+
+            oneOf(inputReader).read();
+            will(onConsecutiveCalls(
+                returnValue("Stop!")
+            ));
+
+            oneOf(console).print("¡Buenas tardes Koko!");
+            oneOf(console).print("Adios Koko");
+        }});
+
+        ohce.run("Koko");
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void running_ohce_during_the_night() {
+        NotificationsConfiguration config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        Ohce ohce = new Ohce(
+            "Stop!",
+            new DayPeriodGreetingsSelector(clock),
+            new ConsoleNotifier(console, config),
+            new ConsolePhraseReader(inputReader));
+
+        context.checking(new Expectations() {{
+            oneOf(clock).hour();
+            will(returnValue(21));
+
+            oneOf(inputReader).read();
+            will(onConsecutiveCalls(
+                returnValue("Stop!")
+            ));
+
+            oneOf(console).print("¡Buenas noches Juan!");
+            oneOf(console).print("Adios Juan");
+        }});
+
+        ohce.run("Juan");
+
+        context.assertIsSatisfied();
+    }
 }
