@@ -59,4 +59,21 @@ public class ConsoleNotifierTest {
 
         context.assertIsSatisfied();
     }
+
+    @Test
+    public void says_bye() {
+        Mockery context = new Mockery();
+        Console console = context.mock(Console.class);
+        Notifier notifier = new ConsoleNotifier(console);
+
+        final String bye_message = "Adios Pedro";
+
+        context.checking(new Expectations() {{
+            oneOf(console).print(bye_message);
+        }});
+
+        notifier.sayBye("Pedro");
+
+        context.assertIsSatisfied();
+    }
 }

@@ -22,7 +22,7 @@ public class Ohce {
         Phrase phrase = phraseInput.read();
         processPhrase(phrase);
 
-        notifier.sayBye();
+        notifier.sayBye(userName);
     }
 
     private void processPhrase(Phrase phrase) {

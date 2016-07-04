@@ -104,7 +104,7 @@ public class OhceTest {
             oneOf(phraseInput).read();
             will(returnValue(stopPhrase));
 
-            oneOf(notifier).sayBye();
+            oneOf(notifier).sayBye(userName);
             ignoring(notifier);
         }});
 
@@ -129,7 +129,7 @@ public class OhceTest {
 
             oneOf(notifier).echoReversedPhrase(new Phrase("epep"));
             oneOf(notifier).echoReversedPhrase(new Phrase("okom"));
-            oneOf(notifier).sayBye();
+            oneOf(notifier).sayBye(userName);
             ignoring(notifier);
         }});
 

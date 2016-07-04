@@ -7,5 +7,5 @@ public interface Notifier {
 
     void palindromesRock();
 
-    void sayBye();
+    void sayBye(String userName);
 }

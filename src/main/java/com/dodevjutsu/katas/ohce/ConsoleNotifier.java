@@ -23,7 +23,7 @@ public class ConsoleNotifier implements Notifier {
     }
 
     @Override
-    public void sayBye() {
-
+    public void sayBye(String userName) {
+        console.print("Adios " + userName);
     }
 }
