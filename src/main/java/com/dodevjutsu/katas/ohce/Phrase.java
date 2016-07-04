@@ -30,4 +30,8 @@ public class Phrase {
     public int hashCode() {
         return content != null ? content.hashCode() : 0;
     }
+
+    public String content() {
+        return content;
+    }
 }

@@ -14,7 +14,7 @@ public class ConsoleNotifier implements Notifier {
 
     @Override
     public void echoReversedPhrase(Phrase reversedPhrase) {
-
+        console.print(reversedPhrase.content());
     }
 
     @Override
