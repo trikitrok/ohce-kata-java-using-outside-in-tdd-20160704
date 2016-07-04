@@ -41,7 +41,7 @@ public class RunningOhceTest {
             ));
 
             oneOf(console).print("¡Buenos días Pedro!");
-            oneOf(console).print("aloh");
+            oneOf(console).print("aloH");
             oneOf(console).print("oto");
             oneOf(console).print("¡Bonita palabra!");
             oneOf(console).print("pots");
