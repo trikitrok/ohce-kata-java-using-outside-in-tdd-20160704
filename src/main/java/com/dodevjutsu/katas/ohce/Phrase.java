@@ -7,6 +7,15 @@ public class Phrase {
         this.content = content;
     }
 
+    public Phrase reversed() {
+        String reversed = new StringBuilder(content).reverse().toString();
+        return new Phrase(reversed);
+    }
+
+    public boolean isPalindrome() {
+        return this.equals(reversed());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -20,9 +29,5 @@ public class Phrase {
     @Override
     public int hashCode() {
         return content != null ? content.hashCode() : 0;
-    }
-
-    public Phrase reversed() {
-        return new Phrase("aloh");
     }
 }

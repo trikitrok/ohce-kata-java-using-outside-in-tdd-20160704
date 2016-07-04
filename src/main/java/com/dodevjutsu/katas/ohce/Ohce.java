@@ -1,6 +1,7 @@
 package com.dodevjutsu.katas.ohce;
 
 public class Ohce {
+    private static final Phrase STOP_PHRASE = new Phrase("Stop!");
     private GreetingsSelector selector;
     private Notifier notifier;
     private PhraseInput phraseInput;
@@ -18,8 +19,21 @@ public class Ohce {
     public void run(String userName) {
         notifier.greet(selector.select_greeting(userName));
 
-        Phrase reversedPhrase = phraseInput.read();
+        Phrase phrase = phraseInput.read();
 
-        notifier.echoReversedPhrase(reversedPhrase);
+        if(shouldStop(phrase)) {
+            notifier.sayBye();
+            return;
+        }
+
+        notifier.echoReversedPhrase(phrase.reversed());
+
+        if(phrase.isPalindrome()) {
+            notifier.palindromesRock();
+        }
+    }
+
+    private boolean shouldStop(Phrase phrase) {
+        return STOP_PHRASE.equals(phrase);
     }
 }

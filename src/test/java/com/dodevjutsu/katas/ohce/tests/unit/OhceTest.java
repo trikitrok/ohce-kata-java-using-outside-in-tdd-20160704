@@ -30,7 +30,7 @@ public class OhceTest {
         String greeting = "¡Buenos días Juan!";
 
         context.checking(new Expectations() {{
-            ignoring(phraseInput);
+            allowing(phraseInput);
             will(returnValue(new Phrase("not used")));
 
             oneOf(selector).select_greeting(userName);
@@ -47,15 +47,55 @@ public class OhceTest {
 
     @Test
     public void echoes_the_reversed_user_phrase() {
+        Phrase phrase = new Phrase("hola");
         Phrase reversedPhrase = new Phrase("aloh");
 
         context.checking(new Expectations() {{
             ignoring(selector);
 
             oneOf(phraseInput).read();
-            will(returnValue(reversedPhrase));
+            will(returnValue(phrase));
 
             oneOf(notifier).echoReversedPhrase(reversedPhrase);
+            ignoring(notifier);
+        }});
+
+        ohce.run(userName);
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void identifies_palindromes() {
+        Phrase palindrome = new Phrase("ana");
+
+        context.checking(new Expectations() {{
+            ignoring(selector);
+
+            oneOf(phraseInput).read();
+            will(returnValue(palindrome));
+
+            oneOf(notifier).echoReversedPhrase(palindrome);
+            oneOf(notifier).palindromesRock();
+            ignoring(notifier);
+        }});
+
+        ohce.run(userName);
+
+        context.assertIsSatisfied();
+    }
+
+    @Test
+    public void says_bye_when_told_to_stop() {
+        Phrase stopPhrase = new Phrase("Stop!");
+
+        context.checking(new Expectations() {{
+            ignoring(selector);
+
+            oneOf(phraseInput).read();
+            will(returnValue(stopPhrase));
+
+            oneOf(notifier).sayBye();
             ignoring(notifier);
         }});
 
