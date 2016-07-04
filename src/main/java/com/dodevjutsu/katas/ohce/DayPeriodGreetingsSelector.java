@@ -11,13 +11,16 @@ public class DayPeriodGreetingsSelector implements GreetingsSelector {
     public String select_greeting(String userName) {
         int hour = clock.hour();
 
-        String greeting = "";
+        String greetingTemplate = "";
         if(6 <= hour && hour < 12 ) {
-            greeting = "Buenos días";
-        } else {
-            greeting = "Buenas tardes";
+            greetingTemplate = "¡Buenos días %s!";
+        } else if (12 <= hour && hour < 20) {
+            greetingTemplate = "¡Buenas tardes %s!";
+        }
+        else {
+            greetingTemplate = "¡Buenas noches %s!";
         }
 
-        return "¡" + greeting + " " + userName + "!";
+        return String.format(greetingTemplate, userName);
     }
 }
