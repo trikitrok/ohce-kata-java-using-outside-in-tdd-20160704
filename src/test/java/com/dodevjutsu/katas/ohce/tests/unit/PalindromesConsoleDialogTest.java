@@ -1,5 +1,6 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
+import com.dodevjutsu.katas.ohce.adapters.dialogs.PalindromesConsoleDialog;
 import com.dodevjutsu.katas.ohce.core.*;
 import org.jmock.Expectations;
 import org.jmock.Mockery;

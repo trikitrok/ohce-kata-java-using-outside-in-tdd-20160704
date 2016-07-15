@@ -1,4 +1,9 @@
-package com.dodevjutsu.katas.ohce.core;
+package com.dodevjutsu.katas.ohce.adapters.dialogs;
+
+import com.dodevjutsu.katas.ohce.core.Dialog;
+import com.dodevjutsu.katas.ohce.core.Notifier;
+import com.dodevjutsu.katas.ohce.core.Phrase;
+import com.dodevjutsu.katas.ohce.core.PhraseReader;
 
 public class PalindromesConsoleDialog implements Dialog {
     private final PhraseReader phraseReader;
