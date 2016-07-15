@@ -12,7 +12,6 @@ public class InfiniteDialog implements Dialog {
     private final Phrase stopPhrase;
 
     public InfiniteDialog(PhraseReader phraseReader, Response response, Phrase stopPhrase) {
-
         this.phraseReader = phraseReader;
         this.response = response;
         this.stopPhrase = stopPhrase;

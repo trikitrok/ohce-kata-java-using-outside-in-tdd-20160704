@@ -1,11 +1,14 @@
 package com.dodevjutsu.katas.ohce.tests.acceptance;
 
 import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
+import com.dodevjutsu.katas.ohce.adapters.dialogs.InfiniteDialog;
 import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
 import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
-import com.dodevjutsu.katas.ohce.adapters.dialogs.PalindromesConsoleDialog;
+import com.dodevjutsu.katas.ohce.adapters.reponses.PalindromesResponse;
+import com.dodevjutsu.katas.ohce.adapters.reponses.ReversingResponse;
 import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
 import com.dodevjutsu.katas.ohce.core.Ohce;
+import com.dodevjutsu.katas.ohce.core.Phrase;
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
 import com.dodevjutsu.katas.ohce.infrastructure.console.Console;
 import com.dodevjutsu.katas.ohce.infrastructure.console.InputReader;
@@ -35,7 +38,8 @@ public class RunningOhceTest {
         ohce = new Ohce(
             new DayPeriodGreetingsSelector(clock),
             notifier,
-            new PalindromesConsoleDialog(phraseReader, notifier, "Stop!"));
+            new InfiniteDialog(phraseReader,
+                new ReversingResponse(notifier, new PalindromesResponse(notifier)), new Phrase("Stop!")));
     }
 
     @Test
