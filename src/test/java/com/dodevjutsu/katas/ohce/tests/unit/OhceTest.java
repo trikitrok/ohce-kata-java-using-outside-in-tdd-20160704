@@ -1,6 +1,9 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.core.*;
+import com.dodevjutsu.katas.ohce.core.Dialog;
+import com.dodevjutsu.katas.ohce.core.GreetingsSelector;
+import com.dodevjutsu.katas.ohce.core.Notifier;
+import com.dodevjutsu.katas.ohce.core.Ohce;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;

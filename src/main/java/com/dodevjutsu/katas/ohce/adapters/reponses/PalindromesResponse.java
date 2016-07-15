@@ -13,7 +13,7 @@ public class PalindromesResponse implements Response {
 
     @Override
     public void respondTo(Phrase phrase) {
-        if(phrase.isPalindrome()) {
+        if (phrase.isPalindrome()) {
             notifier.palindromesRock();
         }
     }

@@ -1,11 +1,9 @@
 package com.dodevjutsu.katas.ohce.adapters.dialogs;
 
-import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
-import com.dodevjutsu.katas.ohce.adapters.reponses.ReversingResponse;
 import com.dodevjutsu.katas.ohce.core.Dialog;
-import com.dodevjutsu.katas.ohce.core.Response;
 import com.dodevjutsu.katas.ohce.core.Phrase;
 import com.dodevjutsu.katas.ohce.core.PhraseReader;
+import com.dodevjutsu.katas.ohce.core.Response;
 
 public class InfiniteDialog implements Dialog {
 
@@ -25,7 +23,7 @@ public class InfiniteDialog implements Dialog {
     }
 
     private void processPhrase(Phrase phrase) {
-        if(shouldStop(phrase)) {
+        if (shouldStop(phrase)) {
             return;
         }
 
