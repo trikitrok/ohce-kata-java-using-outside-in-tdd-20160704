@@ -1,14 +1,8 @@
 package com.dodevjutsu.katas.ohce.tests.acceptance;
 
-import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
-import com.dodevjutsu.katas.ohce.adapters.dialogs.InfiniteDialog;
-import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
-import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
-import com.dodevjutsu.katas.ohce.adapters.reponses.PalindromesResponse;
-import com.dodevjutsu.katas.ohce.adapters.reponses.ReversingResponse;
 import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
 import com.dodevjutsu.katas.ohce.core.Ohce;
-import com.dodevjutsu.katas.ohce.core.Phrase;
+import com.dodevjutsu.katas.ohce.factories.Factories;
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
 import com.dodevjutsu.katas.ohce.infrastructure.console.Console;
 import com.dodevjutsu.katas.ohce.infrastructure.console.InputReader;
@@ -33,14 +27,8 @@ public class RunningOhceTest {
         inputReader = context.mock(InputReader.class);
         clock = context.mock(Clock.class);
         config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
-        final ConsolePhraseReader phraseReader = new ConsolePhraseReader(inputReader);
-        final ConsoleNotifier notifier = new ConsoleNotifier(console, config);
-        ohce = new Ohce(
-            new DayPeriodGreetingsSelector(clock),
-            notifier,
-            new InfiniteDialog(phraseReader,
-                new ReversingResponse(notifier, new PalindromesResponse(notifier)),
-                "Stop!"));
+        String stopPhraseContent = "Stop!";
+        ohce = Factories.createOhce(inputReader, console, clock, config, stopPhraseContent);
     }
 
     @Test
