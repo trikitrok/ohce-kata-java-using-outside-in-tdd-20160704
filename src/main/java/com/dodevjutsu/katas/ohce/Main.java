@@ -3,6 +3,7 @@ package com.dodevjutsu.katas.ohce;
 import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
 import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
 import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
+import com.dodevjutsu.katas.ohce.core.ConsoleDialog;
 import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
 import com.dodevjutsu.katas.ohce.core.Ohce;
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.SystemClock;
@@ -17,11 +18,12 @@ public class Main {
         NotificationsConfiguration config = new NotificationsConfiguration(
             "Adios", "¡Bonita palabra!"
         );
+        final ConsolePhraseReader phraseReader = new ConsolePhraseReader(new SystemInputReader());
+        final ConsoleNotifier notifier = new ConsoleNotifier(new SystemConsole(), config);
         Ohce ohce = new Ohce(
-            stopPhraseContent,
             new DayPeriodGreetingsSelector(new SystemClock()),
-            new ConsoleNotifier(new SystemConsole(), config),
-            new ConsolePhraseReader(new SystemInputReader()));
+            notifier,
+            new ConsoleDialog(phraseReader, notifier, stopPhraseContent));
 
         ohce.run(userName);
     }

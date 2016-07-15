@@ -23,7 +23,7 @@ public class OhceTest {
         notifier = context.mock(Notifier.class);
         phraseReader = context.mock(PhraseReader.class);
         String stopPhraseContent = "Stop!";
-        ohce = new Ohce(stopPhraseContent, selector, notifier, phraseReader);
+        ohce = new Ohce(selector, notifier, new ConsoleDialog(phraseReader, notifier, stopPhraseContent));
         userName = "Juan";
         stopPhrase = new Phrase(stopPhraseContent);
     }

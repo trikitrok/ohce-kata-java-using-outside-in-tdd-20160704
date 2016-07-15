@@ -3,6 +3,7 @@ package com.dodevjutsu.katas.ohce.tests.acceptance;
 import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
 import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
 import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
+import com.dodevjutsu.katas.ohce.core.ConsoleDialog;
 import com.dodevjutsu.katas.ohce.core.NotificationsConfiguration;
 import com.dodevjutsu.katas.ohce.core.Ohce;
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
@@ -29,11 +30,12 @@ public class RunningOhceTest {
         inputReader = context.mock(InputReader.class);
         clock = context.mock(Clock.class);
         config = new NotificationsConfiguration("Adios", "¡Bonita palabra!");
+        final ConsolePhraseReader phraseReader = new ConsolePhraseReader(inputReader);
+        final ConsoleNotifier notifier = new ConsoleNotifier(console, config);
         ohce = new Ohce(
-            "Stop!",
             new DayPeriodGreetingsSelector(clock),
-            new ConsoleNotifier(console, config),
-            new ConsolePhraseReader(inputReader));
+            notifier,
+            new ConsoleDialog(phraseReader, notifier, "Stop!"));
     }
 
     @Test
