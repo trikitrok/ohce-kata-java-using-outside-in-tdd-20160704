@@ -1,19 +1,20 @@
 package com.dodevjutsu.katas.ohce.adapters.dialogs;
 
 import com.dodevjutsu.katas.ohce.core.Dialog;
+import com.dodevjutsu.katas.ohce.core.Response;
 import com.dodevjutsu.katas.ohce.core.Phrase;
 import com.dodevjutsu.katas.ohce.core.PhraseReader;
 
 public class InfiniteDialog implements Dialog {
 
     private final PhraseReader phraseReader;
-    private final DialogResponse dialogResponse;
+    private final Response response;
     private final Phrase stopPhrase;
 
-    public InfiniteDialog(PhraseReader phraseReader, DialogResponse dialogResponse, Phrase stopPhrase) {
+    public InfiniteDialog(PhraseReader phraseReader, Response response, Phrase stopPhrase) {
 
         this.phraseReader = phraseReader;
-        this.dialogResponse = dialogResponse;
+        this.response = response;
         this.stopPhrase = stopPhrase;
     }
 
@@ -27,7 +28,7 @@ public class InfiniteDialog implements Dialog {
             return;
         }
 
-        dialogResponse.respondTo(phrase);
+        response.respondTo(phrase);
 
         processPhrase(phraseReader.read());
     }
