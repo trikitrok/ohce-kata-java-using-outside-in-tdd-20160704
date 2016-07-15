@@ -1,5 +1,5 @@
 package com.dodevjutsu.katas.ohce.core;
 
 public interface Response {
-    void respondTo(Phrase input);
+    void respondTo(Phrase phrase);
 }
