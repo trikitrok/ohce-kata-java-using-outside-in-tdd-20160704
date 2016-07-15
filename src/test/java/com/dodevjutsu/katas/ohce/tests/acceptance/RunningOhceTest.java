@@ -39,7 +39,8 @@ public class RunningOhceTest {
             new DayPeriodGreetingsSelector(clock),
             notifier,
             new InfiniteDialog(phraseReader,
-                new ReversingResponse(notifier, new PalindromesResponse(notifier)), new Phrase("Stop!")));
+                new ReversingResponse(notifier, new PalindromesResponse(notifier)),
+                "Stop!"));
     }
 
     @Test

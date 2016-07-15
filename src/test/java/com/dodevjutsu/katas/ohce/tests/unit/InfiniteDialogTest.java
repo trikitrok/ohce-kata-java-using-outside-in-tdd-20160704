@@ -1,10 +1,10 @@
 package com.dodevjutsu.katas.ohce.tests.unit;
 
-import com.dodevjutsu.katas.ohce.core.Response;
 import com.dodevjutsu.katas.ohce.adapters.dialogs.InfiniteDialog;
 import com.dodevjutsu.katas.ohce.core.Dialog;
 import com.dodevjutsu.katas.ohce.core.Phrase;
 import com.dodevjutsu.katas.ohce.core.PhraseReader;
+import com.dodevjutsu.katas.ohce.core.Response;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
@@ -13,19 +13,18 @@ import org.junit.Test;
 public class InfiniteDialogTest {
 
     private Mockery context;
-    private Phrase stopPhrase;
     private Dialog dialog;
     private Response response;
     private PhraseReader phraseReader;
+    private String stopPhraseContent;
 
     @Before
     public void setUp() {
         context = new Mockery();
         phraseReader = context.mock(PhraseReader.class);
         response = context.mock(Response.class);
-        String stopPhraseContent = "Stop!";
-        stopPhrase = new Phrase(stopPhraseContent);
-        dialog = new InfiniteDialog(phraseReader, response, stopPhrase);
+        stopPhraseContent = "Stop!";
+        dialog = new InfiniteDialog(phraseReader, response, stopPhraseContent);
     }
 
     @Test
@@ -36,7 +35,7 @@ public class InfiniteDialogTest {
                 onConsecutiveCalls(
                     returnValue(new Phrase("pepe")),
                     returnValue(new Phrase("moko")),
-                    returnValue(stopPhrase)
+                    returnValue(new Phrase(stopPhraseContent))
                 )
             );
 

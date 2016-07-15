@@ -1,5 +1,7 @@
 package com.dodevjutsu.katas.ohce.adapters.dialogs;
 
+import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
+import com.dodevjutsu.katas.ohce.adapters.reponses.ReversingResponse;
 import com.dodevjutsu.katas.ohce.core.Dialog;
 import com.dodevjutsu.katas.ohce.core.Response;
 import com.dodevjutsu.katas.ohce.core.Phrase;
@@ -11,10 +13,10 @@ public class InfiniteDialog implements Dialog {
     private final Response response;
     private final Phrase stopPhrase;
 
-    public InfiniteDialog(PhraseReader phraseReader, Response response, Phrase stopPhrase) {
+    public InfiniteDialog(PhraseReader phraseReader, Response response, String stopPhraseContent) {
         this.phraseReader = phraseReader;
         this.response = response;
-        this.stopPhrase = stopPhrase;
+        this.stopPhrase = new Phrase(stopPhraseContent);
     }
 
     @Override
