@@ -12,32 +12,25 @@ public class OhceTest {
     private GreetingsSelector selector;
     private Notifier notifier;
     private Ohce ohce;
-    private PhraseReader phraseReader;
     private String userName;
-    private Phrase stopPhrase;
+    private Dialog dialog;
 
     @Before
     public void setUp() {
         context = new Mockery();
         selector = context.mock(GreetingsSelector.class);
         notifier = context.mock(Notifier.class);
-        phraseReader = context.mock(PhraseReader.class);
-        String stopPhraseContent = "Stop!";
-        ohce = new Ohce(selector, notifier, new ConsoleDialog(phraseReader, notifier, stopPhraseContent));
+        dialog = context.mock(Dialog.class);
+        ohce = new Ohce(selector, notifier, dialog);
         userName = "Juan";
-        stopPhrase = new Phrase(stopPhraseContent);
     }
 
     @Test
     public void greets_user() {
-        String greeting = "¡Buenos días Juan!";
+        String greeting = "any greeting";
 
         context.checking(new Expectations() {{
-            allowing(phraseReader);
-            will(onConsecutiveCalls(
-                returnValue(new Phrase("not used")),
-                returnValue(stopPhrase)
-            ));
+            ignoring(dialog);
 
             oneOf(selector).select_greeting(userName);
             will(returnValue(greeting));
@@ -52,44 +45,12 @@ public class OhceTest {
     }
 
     @Test
-    public void echoes_the_reversed_user_phrase() {
-        Phrase phrase = new Phrase("hola");
-        Phrase reversedPhrase = new Phrase("aloh");
-
+    public void starts_a_dialog_with_the_user() {
         context.checking(new Expectations() {{
+            ignoring(notifier);
             ignoring(selector);
 
-            exactly(2).of(phraseReader).read();
-            will(onConsecutiveCalls(
-                returnValue(phrase),
-                returnValue(stopPhrase)
-            ));
-
-            oneOf(notifier).echoReversedPhrase(reversedPhrase);
-            ignoring(notifier);
-        }});
-
-        ohce.run(userName);
-
-        context.assertIsSatisfied();
-    }
-
-    @Test
-    public void identifies_palindromes() {
-        Phrase palindrome = new Phrase("ana");
-
-        context.checking(new Expectations() {{
-            ignoring(selector);
-
-            exactly(2).of(phraseReader).read();
-            will(onConsecutiveCalls(
-                returnValue(palindrome),
-                returnValue(stopPhrase)
-            ));
-
-            oneOf(notifier).echoReversedPhrase(palindrome);
-            oneOf(notifier).palindromesRock();
-            ignoring(notifier);
+            oneOf(dialog).start();
         }});
 
         ohce.run(userName);
@@ -101,35 +62,8 @@ public class OhceTest {
     public void says_bye_when_told_to_stop() {
         context.checking(new Expectations() {{
             ignoring(selector);
+            ignoring(dialog);
 
-            oneOf(phraseReader).read();
-            will(returnValue(stopPhrase));
-
-            oneOf(notifier).sayBye(userName);
-            ignoring(notifier);
-        }});
-
-        ohce.run(userName);
-
-        context.assertIsSatisfied();
-    }
-
-    @Test
-    public void keeps_asking_for_the_user_input_until_told_to_stop() {
-        context.checking(new Expectations() {{
-            ignoring(selector);
-
-            exactly(3).of(phraseReader).read();
-            will(
-                onConsecutiveCalls(
-                    returnValue(new Phrase("pepe")),
-                    returnValue(new Phrase("moko")),
-                    returnValue(stopPhrase)
-                )
-            );
-
-            oneOf(notifier).echoReversedPhrase(new Phrase("epep"));
-            oneOf(notifier).echoReversedPhrase(new Phrase("okom"));
             oneOf(notifier).sayBye(userName);
             ignoring(notifier);
         }});

@@ -1,11 +1,11 @@
 package com.dodevjutsu.katas.ohce.core;
 
-public class ConsoleDialog implements Dialog {
+public class PalindromesConsoleDialog implements Dialog {
     private final PhraseReader phraseReader;
     private final Notifier notifier;
     private final Phrase stopPhrase;
 
-    public ConsoleDialog(PhraseReader phraseReader, Notifier notifier, String stopPhraseContent) {
+    public PalindromesConsoleDialog(PhraseReader phraseReader, Notifier notifier, String stopPhraseContent) {
         this.phraseReader = phraseReader;
         this.notifier = notifier;
         this.stopPhrase = new Phrase(stopPhraseContent);
