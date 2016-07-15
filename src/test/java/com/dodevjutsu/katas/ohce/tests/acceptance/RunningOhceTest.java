@@ -65,9 +65,7 @@ public class RunningOhceTest {
             will(returnValue(16));
 
             oneOf(inputReader).read();
-            will(onConsecutiveCalls(
-                returnValue("Stop!")
-            ));
+            will(returnValue("Stop!"));
 
             oneOf(console).print("¡Buenas tardes Koko!");
             oneOf(console).print("Adios Koko");
@@ -85,9 +83,7 @@ public class RunningOhceTest {
             will(returnValue(21));
 
             oneOf(inputReader).read();
-            will(onConsecutiveCalls(
-                returnValue("Stop!")
-            ));
+            will(returnValue("Stop!"));
 
             oneOf(console).print("¡Buenas noches Juan!");
             oneOf(console).print("Adios Juan");

@@ -31,13 +31,11 @@ public class InfiniteDialogTest {
     public void keeps_asking_for_input_until_told_to_stop() {
         context.checking(new Expectations() {{
             exactly(3).of(phraseReader).read();
-            will(
-                onConsecutiveCalls(
-                    returnValue(new Phrase("pepe")),
-                    returnValue(new Phrase("moko")),
-                    returnValue(new Phrase(stopPhraseContent))
-                )
-            );
+            will(onConsecutiveCalls(
+                returnValue(new Phrase("pepe")),
+                returnValue(new Phrase("moko")),
+                returnValue(new Phrase(stopPhraseContent))
+            ));
 
             oneOf(response).respondTo(new Phrase("pepe"));
             oneOf(response).respondTo(new Phrase("moko"));
