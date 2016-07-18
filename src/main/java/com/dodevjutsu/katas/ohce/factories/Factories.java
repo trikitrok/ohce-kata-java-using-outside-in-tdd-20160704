@@ -6,6 +6,7 @@ import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
 import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;
 import com.dodevjutsu.katas.ohce.adapters.reponses.PalindromesResponse;
 import com.dodevjutsu.katas.ohce.adapters.reponses.ReversingResponse;
+import com.dodevjutsu.katas.ohce.adapters.reponses.SequenceOfResponses;
 import com.dodevjutsu.katas.ohce.core.*;
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
 import com.dodevjutsu.katas.ohce.infrastructure.console.Console;
@@ -32,8 +33,8 @@ public class Factories {
     }
 
     private static Response createOhceResponse(Notifier notifier) {
-        return new ReversingResponse(
-            notifier,
+        return new SequenceOfResponses(
+            new ReversingResponse (notifier),
             new PalindromesResponse(notifier)
         );
     }

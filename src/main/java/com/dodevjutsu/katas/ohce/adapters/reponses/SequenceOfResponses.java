@@ -3,6 +3,7 @@ package com.dodevjutsu.katas.ohce.adapters.reponses;
 import com.dodevjutsu.katas.ohce.core.Phrase;
 import com.dodevjutsu.katas.ohce.core.Response;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SequenceOfResponses implements Response {
@@ -10,6 +11,10 @@ public class SequenceOfResponses implements Response {
 
     public SequenceOfResponses(List<Response> responses) {
         this.responses = responses;
+    }
+
+    public SequenceOfResponses(Response ... responses) {
+        this(Arrays.asList(responses));
     }
 
     @Override

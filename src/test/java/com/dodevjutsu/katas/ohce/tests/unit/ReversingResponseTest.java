@@ -20,7 +20,7 @@ public class ReversingResponseTest {
         context = new Mockery();
         notifier = context.mock(Notifier.class);
         nextResponse = context.mock(Response.class);
-        response = new ReversingResponse(notifier, nextResponse);
+        response = new ReversingResponse(notifier);
     }
 
     @Test
@@ -31,19 +31,6 @@ public class ReversingResponseTest {
         context.checking(new Expectations() {{
             oneOf(notifier).echoReversedPhrase(reversedPhrase);
             ignoring(nextResponse);
-        }});
-
-        response.respondTo(phrase);
-
-        context.assertIsSatisfied();
-    }
-
-    @Test
-    public void triggers_next_response() {
-        Phrase phrase = new Phrase("something");
-        context.checking(new Expectations() {{
-            ignoring(notifier);
-            oneOf(nextResponse).respondTo(phrase);
         }});
 
         response.respondTo(phrase);

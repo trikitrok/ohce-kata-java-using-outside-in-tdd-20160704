@@ -6,16 +6,13 @@ import com.dodevjutsu.katas.ohce.core.Response;
 
 public class ReversingResponse implements Response {
     private final Notifier notifier;
-    private final Response nextResponse;
 
-    public ReversingResponse(Notifier notifier, Response nextResponse) {
+    public ReversingResponse(Notifier notifier) {
         this.notifier = notifier;
-        this.nextResponse = nextResponse;
     }
 
     @Override
     public void respondTo(Phrase phrase) {
         notifier.echoReversedPhrase(phrase.reversed());
-        nextResponse.respondTo(phrase);
     }
 }
