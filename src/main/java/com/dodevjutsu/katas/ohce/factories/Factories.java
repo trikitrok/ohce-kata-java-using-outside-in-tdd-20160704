@@ -34,7 +34,7 @@ public class Factories {
 
     private static Response createOhceResponse(Notifier notifier) {
         return new SequenceOfResponses(
-            new ReversingResponse (notifier),
+            new ReversingResponse(notifier),
             new PalindromesResponse(notifier)
         );
     }
