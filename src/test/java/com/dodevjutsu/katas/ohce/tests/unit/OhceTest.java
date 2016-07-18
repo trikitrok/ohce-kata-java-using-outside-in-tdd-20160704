@@ -31,7 +31,6 @@ public class OhceTest {
     @Test
     public void greets_user() {
         String greeting = "any greeting";
-
         context.checking(new Expectations() {{
             ignoring(dialog);
 

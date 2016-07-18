@@ -27,7 +27,6 @@ public class ReversingResponseTest {
     public void echoes_the_reversed_user_phrase() {
         Phrase phrase = new Phrase("hola");
         Phrase reversedPhrase = new Phrase("aloh");
-
         context.checking(new Expectations() {{
             oneOf(notifier).echoReversedPhrase(reversedPhrase);
             ignoring(nextResponse);

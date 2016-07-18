@@ -17,7 +17,6 @@ public class ConsolePhraseReaderTest {
         Mockery context = new Mockery();
         InputReader inputReader = context.mock(InputReader.class);
         PhraseReader phraseReader = new ConsolePhraseReader(inputReader);
-
         context.checking(new Expectations() {{
             oneOf(inputReader).read();
             will(returnValue("some input"));

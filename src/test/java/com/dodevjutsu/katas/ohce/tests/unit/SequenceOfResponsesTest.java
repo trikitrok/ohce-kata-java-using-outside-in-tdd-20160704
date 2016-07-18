@@ -35,8 +35,10 @@ public class SequenceOfResponsesTest {
         final Sequence responsesSequence = context.sequence("responsesSequence");
         Phrase anyPhrase = new Phrase("anything");
         context.checking(new Expectations() {{
-            oneOf(firstResponse).respondTo(anyPhrase); inSequence(responsesSequence);
-            oneOf(secondResponse).respondTo(anyPhrase); inSequence(responsesSequence);
+            oneOf(firstResponse).respondTo(anyPhrase);
+            inSequence(responsesSequence);
+            oneOf(secondResponse).respondTo(anyPhrase);
+            inSequence(responsesSequence);
         }});
 
         response.respondTo(anyPhrase);

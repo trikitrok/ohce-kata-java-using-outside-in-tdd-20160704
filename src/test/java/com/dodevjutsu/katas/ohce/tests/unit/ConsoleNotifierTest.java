@@ -27,7 +27,6 @@ public class ConsoleNotifierTest {
     @Test
     public void greets_the_user() {
         final String someGreeting = "hola";
-
         context.checking(new Expectations() {{
             oneOf(console).print(someGreeting);
         }});
@@ -40,7 +39,6 @@ public class ConsoleNotifierTest {
     @Test
     public void echoes_reversed_phrases() {
         final String someInput = "okom";
-
         context.checking(new Expectations() {{
             oneOf(console).print(someInput);
         }});
@@ -53,7 +51,6 @@ public class ConsoleNotifierTest {
     @Test
     public void celebrates_palindromes() {
         final String celebration = "¡Bonita palabra!";
-
         context.checking(new Expectations() {{
             oneOf(console).print(celebration);
         }});
@@ -66,7 +63,6 @@ public class ConsoleNotifierTest {
     @Test
     public void says_bye() {
         final String bye_message = "Adios Pedro";
-
         context.checking(new Expectations() {{
             oneOf(console).print(bye_message);
         }});

@@ -24,7 +24,6 @@ public class PalindromeResponseTest {
     @Test
     public void notices_palindromes() {
         Phrase palindrome = new Phrase("ana");
-
         context.checking(new Expectations() {{
             oneOf(notifier).palindromesRock();
         }});
@@ -37,7 +36,6 @@ public class PalindromeResponseTest {
     @Test
     public void ignores_non_palindromes() {
         Phrase nonPalindrome = new Phrase("koko");
-
         context.checking(new Expectations() {{
             never(notifier).palindromesRock();
         }});
