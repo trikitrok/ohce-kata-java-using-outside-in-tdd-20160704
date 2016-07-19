@@ -35,9 +35,9 @@ public class DayPeriodGreetingsSelectorTest {
             ));
         }});
 
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenos días Juan!"));
-        assertThat(greetingsSelector.select_greeting("Koko"), is("¡Buenos días Koko!"));
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenos días Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenos días Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Koko"), is("¡Buenos días Koko!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenos días Juan!"));
 
         context.assertIsSatisfied();
     }
@@ -53,9 +53,9 @@ public class DayPeriodGreetingsSelectorTest {
             ));
         }});
 
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas tardes Juan!"));
-        assertThat(greetingsSelector.select_greeting("Koko"), is("¡Buenas tardes Koko!"));
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas tardes Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenas tardes Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Koko"), is("¡Buenas tardes Koko!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenas tardes Juan!"));
 
         context.assertIsSatisfied();
     }
@@ -71,9 +71,9 @@ public class DayPeriodGreetingsSelectorTest {
             ));
         }});
 
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas noches Juan!"));
-        assertThat(greetingsSelector.select_greeting("Koko"), is("¡Buenas noches Koko!"));
-        assertThat(greetingsSelector.select_greeting("Juan"), is("¡Buenas noches Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenas noches Juan!"));
+        assertThat(greetingsSelector.selectGreeting("Koko"), is("¡Buenas noches Koko!"));
+        assertThat(greetingsSelector.selectGreeting("Juan"), is("¡Buenas noches Juan!"));
 
         context.assertIsSatisfied();
     }

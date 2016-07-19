@@ -18,7 +18,7 @@ public class Ohce {
     }
 
     private void greet(String userName) {
-        notifier.greet(selector.select_greeting(userName));
+        notifier.greet(selector.selectGreeting(userName));
     }
 
     private void sayBye(String userName) {

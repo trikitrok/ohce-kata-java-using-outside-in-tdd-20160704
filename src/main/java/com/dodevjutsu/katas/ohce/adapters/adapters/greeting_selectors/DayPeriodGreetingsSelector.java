@@ -11,7 +11,7 @@ public class DayPeriodGreetingsSelector implements GreetingsSelector {
     }
 
     @Override
-    public String select_greeting(String userName) {
+    public String selectGreeting(String userName) {
         return String.format(selectGreetingTemplateFor(clock.hour()), userName);
     }
 

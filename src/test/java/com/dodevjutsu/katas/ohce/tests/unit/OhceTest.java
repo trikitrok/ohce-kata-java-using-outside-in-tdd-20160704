@@ -34,7 +34,7 @@ public class OhceTest {
         context.checking(new Expectations() {{
             ignoring(dialog);
 
-            oneOf(selector).select_greeting(userName);
+            oneOf(selector).selectGreeting(userName);
             will(returnValue(greeting));
 
             oneOf(notifier).greet(greeting);
