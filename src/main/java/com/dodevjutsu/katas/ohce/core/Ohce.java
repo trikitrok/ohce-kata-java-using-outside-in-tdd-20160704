@@ -13,8 +13,12 @@ public class Ohce {
 
     public void run(String userName) {
         greet(userName);
-        dialog.start();
+        dialogWithUser();
         sayBye(userName);
+    }
+
+    private void dialogWithUser() {
+        dialog.start();
     }
 
     private void greet(String userName) {
