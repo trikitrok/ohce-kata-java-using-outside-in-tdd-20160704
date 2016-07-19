@@ -2,8 +2,8 @@ package com.dodevjutsu.katas.ohce.core;
 
 public class Ohce {
     private final Dialog dialog;
-    private GreetingsSelector selector;
-    private Notifier notifier;
+    private final GreetingsSelector selector;
+    private final Notifier notifier;
 
     public Ohce(GreetingsSelector selector, Notifier notifier, Dialog dialog) {
         this.selector = selector;
