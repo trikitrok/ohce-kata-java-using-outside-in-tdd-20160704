@@ -13,13 +13,11 @@ public class ReversingResponseTest {
     private Mockery context;
     private Notifier notifier;
     private Response response;
-    private Response nextResponse;
 
     @Before
     public void setUp() {
         context = new Mockery();
         notifier = context.mock(Notifier.class);
-        nextResponse = context.mock(Response.class);
         response = new ReversingResponse(notifier);
     }
 
@@ -29,7 +27,6 @@ public class ReversingResponseTest {
         Phrase reversedPhrase = new Phrase("aloh");
         context.checking(new Expectations() {{
             oneOf(notifier).echoReversedPhrase(reversedPhrase);
-            ignoring(nextResponse);
         }});
 
         response.respondTo(phrase);
