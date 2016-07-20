@@ -1,6 +1,6 @@
 package com.dodevjutsu.katas.ohce.factories;
 
-import com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors.DayPeriodGreetingsSelector;
+import com.dodevjutsu.katas.ohce.adapters.greeting_selectors.DayPeriodGreetingsSelector;
 import com.dodevjutsu.katas.ohce.adapters.dialogs.InfiniteDialog;
 import com.dodevjutsu.katas.ohce.adapters.notifiers.ConsoleNotifier;
 import com.dodevjutsu.katas.ohce.adapters.phrase_readers.ConsolePhraseReader;

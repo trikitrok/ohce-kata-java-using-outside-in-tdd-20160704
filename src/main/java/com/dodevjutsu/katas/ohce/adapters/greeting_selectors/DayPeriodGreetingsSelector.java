@@ -1,4 +1,4 @@
-package com.dodevjutsu.katas.ohce.adapters.adapters.greeting_selectors;
+package com.dodevjutsu.katas.ohce.adapters.greeting_selectors;
 
 import com.dodevjutsu.katas.ohce.infrastructure.clocks.Clock;
 import com.dodevjutsu.katas.ohce.core.GreetingsSelector;
